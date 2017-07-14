@@ -1,0 +1,31 @@
+
+<div class="col-md-8">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form">
+  <label>Name: <input type="text"
+                name="name"
+                [(ngModel)]="user.name"
+                required
+                #name="ngModel"
+                class="form-control"/></label><br/>
+  <div *ngIf="!name.valid" class="alert alert-danger">Required field </div>
+  <label>Email: <input type="text"
+                name="email"
+                [(ngModel)]="user.email"
+                required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                #email="ngModel"
+                class="form-control"/></label><br/>
+  <div *ngIf="!email.valid" class="alert alert-danger">Invalid email </div>
+  <label>Email:</label><br/>
+  <textarea name="post" [(ngModel)]="user.post" required minlength="10"
+    #post="ngModel" class="form-control" cols="8" rows="4">
+
+  </textarea>
+ 
+  <div *ngIf="!post.valid" class="alert alert-danger"> Minumum of 10 characters </div>
+  <br/>
+  <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-primary" (click)="getUser()">Get Data</button>
+</form>
+</div>
+
